@@ -1,9 +1,20 @@
+using Microsoft.EntityFrameworkCore;
+using RestaurantRater.Data;
+using RestaurantRater.Services;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<RestaurantDbContext>(options => options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection")
+));
+
+builder.Services.AddScoped<IRestaurantService, RestaurantService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
