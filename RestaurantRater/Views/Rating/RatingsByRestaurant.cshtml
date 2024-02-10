@@ -1,0 +1,48 @@
+@model IEnumerable<RestaurantRater.Models.RatingModels.RatingItem>
+@{
+    string restaurantName = Model.FirstOrDefault(x => x.RestaurantName != null).RestaurantName;
+    ViewData["Title"] = restaurantName;
+}
+
+<h2>Ratings for @restaurantName</h2>
+
+<table class="table table-striped">
+        <thead>
+        <tr>
+            @* <th>
+                @Html.DisplayNameFor(model => model.RestaurantName)
+            </th> *@
+            <th>
+                @Html.DisplayNameFor(model => model.Score)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                @* <td>
+                    @Html.DisplayFor(modelItem => item.RestaurantName)
+                </td> *@
+                <td>
+                    @if(item.Score > 0)
+                    {
+                        @Html.DisplayFor(modelItem => item.Score)
+                        // add user? 
+                    }
+                    else
+                    {
+                        <span>No Ratings Yet</span>
+                    }
+                </td>
+                <td>
+                    @* @Html.ActionLink("Edit", "Edit", "Restaurant", new {id = item.Id}) |
+                    @Html.ActionLink("Details", "Details", "Restaurant", new {id = item.Id}) | *@
+                    @* if return to 3 rating avg, add details to break down score*@
+                    @Html.ActionLink("Delete", "Delete", "Restaurant", new {id = item.Id})
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
