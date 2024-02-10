@@ -25,6 +25,8 @@ namespace RestaurantRater.Models.RatingModels
         [Required]
         public double CleanlinessScore { get; set; }
 
+        public double UserScore { get; set; }
+
         public IEnumerable<SelectListItem> RestaurantOptions {get; set;} = new List<SelectListItem>();
     }
 }

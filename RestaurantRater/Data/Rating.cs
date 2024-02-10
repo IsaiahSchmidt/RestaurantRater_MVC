@@ -13,6 +13,7 @@ namespace RestaurantRater.Data
         public double FoodScore { get; set; }
         public double CleanlinessScore { get; set; }
         public double AtmosphereScore { get; set; }
+        public double UserScore { get; set; }
 
         public virtual Restaurant Restaurant { get; set; }
 

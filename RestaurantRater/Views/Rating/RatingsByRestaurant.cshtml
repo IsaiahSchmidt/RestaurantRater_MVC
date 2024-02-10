@@ -1,10 +1,12 @@
 @model IEnumerable<RestaurantRater.Models.RatingModels.RatingItem>
 @{
     string restaurantName = Model.FirstOrDefault(x => x.RestaurantName != null).RestaurantName;
+    double restaurantScore = Model.FirstOrDefault(x => x.RestaurantName != null).Score;
     ViewData["Title"] = restaurantName;
 }
 
 <h2>Ratings for @restaurantName</h2>
+<h4>Score : @restaurantScore</h4>
 
 <table class="table table-striped">
         <thead>
@@ -13,9 +15,18 @@
                 @Html.DisplayNameFor(model => model.RestaurantName)
             </th> *@
             <th>
-                @Html.DisplayNameFor(model => model.Score)
+                @Html.DisplayNameFor(model => model.UserScore)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.FoodScore)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AtmosphereScore)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CleanlinessScore)
+            </th>
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
@@ -25,22 +36,25 @@
                 @* <td>
                     @Html.DisplayFor(modelItem => item.RestaurantName)
                 </td> *@
-                <td>
-                    @if(item.Score > 0)
-                    {
-                        @Html.DisplayFor(modelItem => item.Score)
-                        // add user? 
+
+                    @* @if(item.Score > 0)
+                    { *@
+                        <td>@Html.DisplayFor(modelItem => item.UserScore)</td>
+                        <td>@Html.DisplayFor(modelItem => item.FoodScore)</td>
+                        <td>@Html.DisplayFor(modelItem => item.AtmosphereScore)</td>
+                        <td>@Html.DisplayFor(modelItem => item.CleanlinessScore)</td>
+                        @* // add user? 
                     }
                     else
                     {
-                        <span>No Ratings Yet</span>
-                    }
-                </td>
+                        <span class="text-warning">No Ratings Yet</span>
+                    } *@
+
                 <td>
                     @* @Html.ActionLink("Edit", "Edit", "Restaurant", new {id = item.Id}) |
                     @Html.ActionLink("Details", "Details", "Restaurant", new {id = item.Id}) | *@
                     @* if return to 3 rating avg, add details to break down score*@
-                    @Html.ActionLink("Delete", "Delete", "Restaurant", new {id = item.Id})
+                    @Html.ActionLink("Delete", "Delete", "Rating", new {id = item.Id})
                 </td>
             </tr>
         }

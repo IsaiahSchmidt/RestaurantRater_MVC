@@ -54,6 +54,7 @@ namespace RestaurantRater.Services
                 Score = restaurant.Score,
                 Ratings = restaurant.Ratings.Select(r => new RatingListItem{
                     Id = r.Id,
+                    Score = r.Restaurant.Score,
                     FoodScore = r.FoodScore,
                     AtmosphereScore = r.AtmosphereScore,
                     CleanlinessScore = r.CleanlinessScore

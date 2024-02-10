@@ -25,29 +25,30 @@ namespace RestaurantRater.Data
         {
             get
             {
-                return Ratings.Count > 0 ? Ratings.Select(r => r.FoodScore).Sum() / Ratings.Count : 0;
+                return Math.Round(Ratings.Count > 0 ? Ratings.Select(r => r.FoodScore).Sum() / Ratings.Count : 0);
             }
         }
         public double AvgCleanlinessScore
         {
             get
             {
-                return Ratings.Count > 0 ? Ratings.Select(r => r.CleanlinessScore).Sum() / Ratings.Count : 0;
+                return Math.Round(Ratings.Count > 0 ? Ratings.Select(r => r.CleanlinessScore).Sum() / Ratings.Count : 0);
             }
         }
         public double AvgAtmosphereScore
         {
             get
             {
-                return Ratings.Count > 0 ? Ratings.Select(r => r.AtmosphereScore).Sum() / Ratings.Count : 0;
+                return Math.Round(Ratings.Count > 0 ? Ratings.Select(r => r.AtmosphereScore).Sum() / Ratings.Count : 0);
             }
         }
         public double Score
         {
             get
             {
-                return (AvgFoodScore + AvgAtmosphereScore + AvgCleanlinessScore) / 3;
+                return Math.Round((AvgFoodScore + AvgAtmosphereScore + AvgCleanlinessScore) / 3);
             }
         }
+
     }
 }
